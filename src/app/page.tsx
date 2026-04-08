@@ -459,7 +459,7 @@ export default function Page() {
               {
                 n: "02",
                 title: "A IA audita tudo",
-                desc: "Frete-peso, GRIS, ad valorem, pedágio, despacho, TDE, ICMS — cada componente verificado contra a tabela contratada.",
+                desc: "Frete-peso, GRIS, ad valorem, pedágio, despacho, ICMS — cada componente verificado contra a tabela contratada.",
               },
               {
                 n: "03",
