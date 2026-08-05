@@ -417,11 +417,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ── TRUSTED BY ──────────────────────────────────────────────────────── */}
+      {/* ── BUILT FOR ───────────────────────────────────────────────────────── */}
       <section style={{ padding: "36px 0", borderBottom: "1px solid #eee" }}>
         <div style={{ ...WW, textAlign: "center" }}>
           <p style={{ fontSize: 11, fontWeight: 600, color: "#999", letterSpacing: ".12em", textTransform: "uppercase", marginBottom: 18 }}>
-            Validado por profissionais de
+            Feito para quem paga frete
           </p>
           <div style={{ display: "flex", justifyContent: "center", gap: isMobile ? 16 : 48, alignItems: "center", opacity: 0.4, flexWrap: "wrap" }}>
             {["Indústria Alimentícia", "E-commerce", "Atacado Distribuidor", "Transportadoras", "Logística 3PL"].map((n) => (
