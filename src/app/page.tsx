@@ -533,14 +533,14 @@ export default function Page() {
           </R>
           <R d={0.08}>
             <p style={{ fontSize: 16, color: "#666", maxWidth: 500, marginBottom: 56, lineHeight: 1.7 }}>
-              A conferência manual consome tempo, gera erros e deixa dinheiro na mesa. A Confere comprime meses de trabalho em horas.
+              A conferência manual consome tempo, gera erros e deixa dinheiro na mesa.
             </p>
           </R>
           <div style={{ display: "grid", gridTemplateColumns: isMobile ? "1fr" : "repeat(3, 1fr)", borderTop: "1px solid #e5e5e5" }}>
             {[
-              { v: 59, sx: "%", label: "das faturas de frete contêm divergências que passam despercebidas na conferência manual." },
-              { px: "R$ ", v: 47000, label: "encontrados por mês em cobranças indevidas em empresa alimentícia com 8 transportadoras." },
-              { v: 90, sx: "%", label: "de redução no tempo de auditoria. De dias de trabalho manual para horas com automação." },
+              { px: "até ", v: 8, sx: "%", label: "das cobranças de frete divergem do contrato: tabela errada, adicional indevido, cubagem distorcida." },
+              { v: 8.5, sx: "%", label: "do PIB brasileiro é gasto só com transporte — a maior fatia do custo logístico do país." },
+              { v: 168, sx: "h", label: "para cancelar um CT-e com erro. Depois disso, só contestação." },
             ].map((n, i) => (
               <R key={i} d={i * 0.06}>
                 <div style={{ padding: isMobile ? "32px 0" : "40px 32px 40px 0", borderRight: !isMobile && i < 2 ? "1px solid #e5e5e5" : "none", paddingLeft: !isMobile && i > 0 ? 32 : 0, borderBottom: isMobile && i < 2 ? "1px solid #e5e5e5" : "none" }}>
