@@ -19,7 +19,8 @@ export async function parseFreightTable(buf: Buffer, fileName: string): Promise<
     try {
       const result = await new PDFParse({ data: new Uint8Array(buf) }).getText();
       extracted = result.text ?? "";
-    } catch {
+    } catch (e) {
+      if (process.env.NODE_ENV !== "test") console.error("pdf-parse getText failed:", e);
       throw new ScannedPdfError();
     }
     if (extracted.replace(/\s/g, "").length < 50) throw new ScannedPdfError();
