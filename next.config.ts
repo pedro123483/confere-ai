@@ -6,7 +6,11 @@ const nextConfig: NextConfig = {
   // require that file tracing misses — without this the serverless bundle
   // ships without it and /api/audit dies with "DOMMatrix is not defined".
   outputFileTracingIncludes: {
-    "/api/audit": ["./node_modules/@napi-rs/**"],
+    "/api/audit": [
+      "./node_modules/@napi-rs/**",
+      "./node_modules/pdf-parse/**",
+      "./node_modules/pdfjs-dist/**",
+    ],
   },
 };
 
