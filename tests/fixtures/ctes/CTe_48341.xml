@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTe xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte Id="CTe41260723456789000177570010000483411408189053" versao="4.00">
+    <ide>
+      <cUF>41</cUF><cCT>40818905</cCT><CFOP>6353</CFOP>
+      <natOp>PRESTACAO DE SERVICO DE TRANSPORTE</natOp><mod>57</mod><serie>1</serie>
+      <nCT>48341</nCT><dhEmi>2026-07-05T15:40:00-03:00</dhEmi>
+      <tpCTe>0</tpCTe><modal>01</modal><tpServ>0</tpServ>
+      <xMunIni>Curitiba</xMunIni><UFIni>PR</UFIni>
+      <xMunFim>Campinas</xMunFim><UFFim>SP</UFFim><cMunFim>3509502</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>23456789000177</CNPJ><IE>9034567890</IE>
+      <xNome>Rápido Paranaense Transportes Ltda</xNome>
+      <enderEmit><xMun>Curitiba</xMun><UF>PR</UF></enderEmit>
+    </emit>
+    <rem>
+      <CNPJ>12345678000199</CNPJ><IE>9012345678</IE>
+      <xNome>Metalfer Indústria de Fundidos S.A.</xNome>
+      <enderReme><xMun>Curitiba</xMun><UF>PR</UF></enderReme>
+    </rem>
+    <dest>
+      <CNPJ>32794098636656</CNPJ>
+      <xNome>Metalurgica Sao Cristovao Ltda</xNome>
+      <enderDest><xMun>Campinas</xMun><UF>SP</UF></enderDest>
+    </dest>
+    <vPrest>
+      <vTPrest>2160.25</vTPrest><vRec>2160.25</vRec>
+        <Comp><xNome>FRETE PESO</xNome><vComp>1717.18</vComp></Comp>
+        <Comp><xNome>GRIS</xNome><vComp>203.02</vComp></Comp>
+        <Comp><xNome>AD VALOREM</xNome><vComp>97.45</vComp></Comp>
+        <Comp><xNome>PEDAGIO</xNome><vComp>142.60</vComp></Comp>
+    </vPrest>
+    <imp>
+      <ICMS><ICMS00><CST>00</CST><vBC>2160.25</vBC><pICMS>12.00</pICMS><vICMS>259.23</vICMS></ICMS00></ICMS>
+    </imp>
+    <infCTeNorm>
+      <infCarga>
+        <vCarga>81208.46</vCarga><proPred>FUNDIDOS DE FERRO</proPred>
+        <infQ><cUnid>01</cUnid><tpMed>PESO BRUTO</tpMed><qCarga>2201.51</qCarga></infQ>
+        <infQ><cUnid>00</cUnid><tpMed>CUBAGEM</tpMed><qCarga>2.670</qCarga></infQ>
+      </infCarga>
+    </infCTeNorm>
+  </infCte>
+</CTe>

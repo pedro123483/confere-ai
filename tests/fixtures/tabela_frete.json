@@ -1,0 +1,89 @@
+{
+  "transportadora": {
+    "nome": "Rápido Paranaense Transportes Ltda",
+    "cnpj": "23456789000177",
+    "ie": "9034567890"
+  },
+  "embarcador": {
+    "nome": "Metalfer Indústria de Fundidos S.A.",
+    "cnpj": "12345678000199",
+    "ie": "9012345678",
+    "municipio": "Curitiba",
+    "uf": "PR"
+  },
+  "vigencia_base": "2026-03-01",
+  "reajuste": {
+    "percentual": 0.08,
+    "vigencia": "2026-07-15"
+  },
+  "fator_cubagem_kg_m3": 300,
+  "gris": {
+    "pct": 0.0025,
+    "min": 8.0
+  },
+  "adval": {
+    "pct": 0.0012,
+    "min": 5.0
+  },
+  "pedagio": {
+    "valor_por_fracao": 6.2,
+    "fracao_kg": 100
+  },
+  "tde": {
+    "valor": 85.0,
+    "pracas": [
+      "SAO PAULO"
+    ]
+  },
+  "taxas_previstas": [
+    "FRETE PESO",
+    "GRIS",
+    "AD VALOREM",
+    "PEDAGIO",
+    "TDE"
+  ],
+  "pracas": {
+    "CURITIBA_REGIAO": {
+      "rate_kg": 0.42,
+      "min": 95.0,
+      "uf": "PR",
+      "aliq_icms": 0.195
+    },
+    "INTERIOR_PR": {
+      "rate_kg": 0.55,
+      "min": 120.0,
+      "uf": "PR",
+      "aliq_icms": 0.195
+    },
+    "SAO_PAULO_CAP": {
+      "rate_kg": 0.68,
+      "min": 150.0,
+      "uf": "SP",
+      "aliq_icms": 0.12
+    },
+    "INTERIOR_SP": {
+      "rate_kg": 0.78,
+      "min": 165.0,
+      "uf": "SP",
+      "aliq_icms": 0.12
+    },
+    "SC": {
+      "rate_kg": 0.6,
+      "min": 130.0,
+      "uf": "SC",
+      "aliq_icms": 0.12
+    },
+    "RS": {
+      "rate_kg": 0.85,
+      "min": 180.0,
+      "uf": "RS",
+      "aliq_icms": 0.12
+    },
+    "MG": {
+      "rate_kg": 0.82,
+      "min": 175.0,
+      "uf": "MG",
+      "aliq_icms": 0.12
+    }
+  }
+}

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTe xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte Id="CTe41260723456789000177570010000483991992748526" versao="4.00">
+    <ide>
+      <cUF>41</cUF><cCT>99274852</cCT><CFOP>6353</CFOP>
+      <natOp>PRESTACAO DE SERVICO DE TRANSPORTE</natOp><mod>57</mod><serie>1</serie>
+      <nCT>48399</nCT><dhEmi>2026-07-03T16:18:00-03:00</dhEmi>
+      <tpCTe>0</tpCTe><modal>01</modal><tpServ>0</tpServ>
+      <xMunIni>Curitiba</xMunIni><UFIni>PR</UFIni>
+      <xMunFim>Chapeco</xMunFim><UFFim>SC</UFFim><cMunFim>4204202</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>23456789000177</CNPJ><IE>9034567890</IE>
+      <xNome>Rápido Paranaense Transportes Ltda</xNome>
+      <enderEmit><xMun>Curitiba</xMun><UF>PR</UF></enderEmit>
+    </emit>
+    <rem>
+      <CNPJ>12345678000199</CNPJ><IE>9012345678</IE>
+      <xNome>Metalfer Indústria de Fundidos S.A.</xNome>
+      <enderReme><xMun>Curitiba</xMun><UF>PR</UF></enderReme>
+    </rem>
+    <dest>
+      <CNPJ>54566254076957</CNPJ>
+      <xNome>Tratores Sulmaq S.A.</xNome>
+      <enderDest><xMun>Chapeco</xMun><UF>SC</UF></enderDest>
+    </dest>
+    <vPrest>
+      <vTPrest>695.81</vTPrest><vRec>695.81</vRec>
+        <Comp><xNome>FRETE PESO</xNome><vComp>305.87</vComp></Comp>
+        <Comp><xNome>GRIS</xNome><vComp>238.34</vComp></Comp>
+        <Comp><xNome>AD VALOREM</xNome><vComp>114.40</vComp></Comp>
+        <Comp><xNome>PEDAGIO</xNome><vComp>37.20</vComp></Comp>
+    </vPrest>
+    <imp>
+      <ICMS><ICMS00><CST>00</CST><vBC>695.81</vBC><pICMS>12.00</pICMS><vICMS>83.50</vICMS></ICMS00></ICMS>
+    </imp>
+    <infCTeNorm>
+      <infCarga>
+        <vCarga>95335.91</vCarga><proPred>FUNDIDOS DE FERRO</proPred>
+        <infQ><cUnid>01</cUnid><tpMed>PESO BRUTO</tpMed><qCarga>509.79</qCarga></infQ>
+        <infQ><cUnid>00</cUnid><tpMed>CUBAGEM</tpMed><qCarga>1.250</qCarga></infQ>
+      </infCarga>
+    </infCTeNorm>
+  </infCte>
+</CTe>

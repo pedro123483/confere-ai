@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTe xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte Id="CTe41260723456789000177570010000482591609390537" versao="4.00">
+    <ide>
+      <cUF>41</cUF><cCT>60939053</cCT><CFOP>5353</CFOP>
+      <natOp>PRESTACAO DE SERVICO DE TRANSPORTE</natOp><mod>57</mod><serie>1</serie>
+      <nCT>48259</nCT><dhEmi>2026-07-18T08:10:00-03:00</dhEmi>
+      <tpCTe>0</tpCTe><modal>01</modal><tpServ>0</tpServ>
+      <xMunIni>Curitiba</xMunIni><UFIni>PR</UFIni>
+      <xMunFim>Sao Jose dos Pinhais</xMunFim><UFFim>PR</UFFim><cMunFim>4125506</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>23456789000177</CNPJ><IE>9034567890</IE>
+      <xNome>Rápido Paranaense Transportes Ltda</xNome>
+      <enderEmit><xMun>Curitiba</xMun><UF>PR</UF></enderEmit>
+    </emit>
+    <rem>
+      <CNPJ>12345678000199</CNPJ><IE>9012345678</IE>
+      <xNome>Metalfer Indústria de Fundidos S.A.</xNome>
+      <enderReme><xMun>Curitiba</xMun><UF>PR</UF></enderReme>
+    </rem>
+    <dest>
+      <CNPJ>97968623572563</CNPJ>
+      <xNome>Compressores Iguacu S.A.</xNome>
+      <enderDest><xMun>Sao Jose dos Pinhais</xMun><UF>PR</UF></enderDest>
+    </dest>
+    <vPrest>
+      <vTPrest>1083.48</vTPrest><vRec>1083.48</vRec>
+        <Comp><xNome>FRETE PESO</xNome><vComp>612.75</vComp></Comp>
+        <Comp><xNome>GRIS</xNome><vComp>259.41</vComp></Comp>
+        <Comp><xNome>AD VALOREM</xNome><vComp>124.52</vComp></Comp>
+        <Comp><xNome>PEDAGIO</xNome><vComp>86.80</vComp></Comp>
+    </vPrest>
+    <imp>
+      <ICMS><ICMS00><CST>00</CST><vBC>1083.48</vBC><pICMS>19.50</pICMS><vICMS>211.28</vICMS></ICMS00></ICMS>
+    </imp>
+    <infCTeNorm>
+      <infCarga>
+        <vCarga>103764.48</vCarga><proPred>FUNDIDOS DE FERRO</proPred>
+        <infQ><cUnid>01</cUnid><tpMed>PESO BRUTO</tpMed><qCarga>1350.86</qCarga></infQ>
+        <infQ><cUnid>00</cUnid><tpMed>CUBAGEM</tpMed><qCarga>2.970</qCarga></infQ>
+      </infCarga>
+    </infCTeNorm>
+  </infCte>
+</CTe>
