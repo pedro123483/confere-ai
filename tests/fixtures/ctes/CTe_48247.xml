@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTe xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte Id="CTe41260723456789000177570010000482471563793293" versao="4.00">
+    <ide>
+      <cUF>41</cUF><cCT>56379329</cCT><CFOP>6353</CFOP>
+      <natOp>PRESTACAO DE SERVICO DE TRANSPORTE</natOp><mod>57</mod><serie>1</serie>
+      <nCT>48247</nCT><dhEmi>2026-07-14T08:50:00-03:00</dhEmi>
+      <tpCTe>0</tpCTe><modal>01</modal><tpServ>0</tpServ>
+      <xMunIni>Curitiba</xMunIni><UFIni>PR</UFIni>
+      <xMunFim>Contagem</xMunFim><UFFim>MG</UFFim><cMunFim>3118601</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>23456789000177</CNPJ><IE>9034567890</IE>
+      <xNome>Rápido Paranaense Transportes Ltda</xNome>
+      <enderEmit><xMun>Curitiba</xMun><UF>PR</UF></enderEmit>
+    </emit>
+    <rem>
+      <CNPJ>12345678000199</CNPJ><IE>9012345678</IE>
+      <xNome>Metalfer Indústria de Fundidos S.A.</xNome>
+      <enderReme><xMun>Curitiba</xMun><UF>PR</UF></enderReme>
+    </rem>
+    <dest>
+      <CNPJ>78989296592748</CNPJ>
+      <xNome>Fundicoes Reunidas do Sul Ltda</xNome>
+      <enderDest><xMun>Contagem</xMun><UF>MG</UF></enderDest>
+    </dest>
+    <vPrest>
+      <vTPrest>3210.90</vTPrest><vRec>3210.90</vRec>
+        <Comp><xNome>FRETE PESO</xNome><vComp>2927.79</vComp></Comp>
+        <Comp><xNome>GRIS</xNome><vComp>48.86</vComp></Comp>
+        <Comp><xNome>AD VALOREM</xNome><vComp>23.45</vComp></Comp>
+        <Comp><xNome>PEDAGIO</xNome><vComp>210.80</vComp></Comp>
+    </vPrest>
+    <imp>
+      <ICMS><ICMS00><CST>00</CST><vBC>3210.90</vBC><pICMS>12.00</pICMS><vICMS>385.31</vICMS></ICMS00></ICMS>
+    </imp>
+    <infCTeNorm>
+      <infCarga>
+        <vCarga>19543.56</vCarga><proPred>FUNDIDOS DE FERRO</proPred>
+        <infQ><cUnid>01</cUnid><tpMed>PESO BRUTO</tpMed><qCarga>2321.64</qCarga></infQ>
+        <infQ><cUnid>00</cUnid><tpMed>CUBAGEM</tpMed><qCarga>11.020</qCarga></infQ>
+      </infCarga>
+    </infCTeNorm>
+  </infCte>
+</CTe>

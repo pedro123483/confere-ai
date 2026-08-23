@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CTe xmlns="http://www.portalfiscal.inf.br/cte">
+  <infCte Id="CTe41260723456789000177570010000483531559070889" versao="4.00">
+    <ide>
+      <cUF>41</cUF><cCT>55907088</cCT><CFOP>6353</CFOP>
+      <natOp>PRESTACAO DE SERVICO DE TRANSPORTE</natOp><mod>57</mod><serie>1</serie>
+      <nCT>48353</nCT><dhEmi>2026-07-19T12:32:00-03:00</dhEmi>
+      <tpCTe>0</tpCTe><modal>01</modal><tpServ>0</tpServ>
+      <xMunIni>Curitiba</xMunIni><UFIni>PR</UFIni>
+      <xMunFim>Porto Alegre</xMunFim><UFFim>RS</UFFim><cMunFim>4314902</cMunFim>
+    </ide>
+    <emit>
+      <CNPJ>23456789000177</CNPJ><IE>9034567890</IE>
+      <xNome>Rápido Paranaense Transportes Ltda</xNome>
+      <enderEmit><xMun>Curitiba</xMun><UF>PR</UF></enderEmit>
+    </emit>
+    <rem>
+      <CNPJ>12345678000199</CNPJ><IE>9012345678</IE>
+      <xNome>Metalfer Indústria de Fundidos S.A.</xNome>
+      <enderReme><xMun>Curitiba</xMun><UF>PR</UF></enderReme>
+    </rem>
+    <dest>
+      <CNPJ>53300072292580</CNPJ>
+      <xNome>Implementos Agricolas Cambara S.A.</xNome>
+      <enderDest><xMun>Porto Alegre</xMun><UF>RS</UF></enderDest>
+    </dest>
+    <vPrest>
+      <vTPrest>2164.05</vTPrest><vRec>2164.05</vRec>
+        <Comp><xNome>FRETE PESO</xNome><vComp>1917.77</vComp></Comp>
+        <Comp><xNome>GRIS</xNome><vComp>78.43</vComp></Comp>
+        <Comp><xNome>AD VALOREM</xNome><vComp>37.65</vComp></Comp>
+        <Comp><xNome>PEDAGIO</xNome><vComp>130.20</vComp></Comp>
+    </vPrest>
+    <imp>
+      <ICMS><ICMS00><CST>00</CST><vBC>2164.05</vBC><pICMS>12.00</pICMS><vICMS>259.69</vICMS></ICMS00></ICMS>
+    </imp>
+    <infCTeNorm>
+      <infCarga>
+        <vCarga>31371.76</vCarga><proPred>FUNDIDOS DE FERRO</proPred>
+        <infQ><cUnid>01</cUnid><tpMed>PESO BRUTO</tpMed><qCarga>2089.07</qCarga></infQ>
+        <infQ><cUnid>00</cUnid><tpMed>CUBAGEM</tpMed><qCarga>6.340</qCarga></infQ>
+      </infCarga>
+    </infCTeNorm>
+  </infCte>
+</CTe>

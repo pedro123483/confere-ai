@@ -349,7 +349,7 @@ export default function Page() {
               </a>
             ))}
             <a
-              href="#cta"
+              href="/audit"
               style={{ ...btnPrimary, padding: "8px 18px", fontSize: 13.5 }}
               onMouseEnter={(e) => ((e.target as HTMLElement).style.background = "#333")}
               onMouseLeave={(e) => ((e.target as HTMLElement).style.background = "#111")}
@@ -385,7 +385,7 @@ export default function Page() {
               <R d={0.16}>
                 <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
                   <a
-                    href="#cta"
+                    href="/audit"
                     style={btnPrimary}
                     onMouseEnter={(e) => ((e.target as HTMLElement).style.background = "#333")}
                     onMouseLeave={(e) => ((e.target as HTMLElement).style.background = "#111")}
