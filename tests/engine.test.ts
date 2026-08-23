@@ -1,0 +1,84 @@
+import { it, expect, describe } from "vitest";
+import fs from "node:fs";
+import path from "node:path";
+import { audit } from "../src/lib/audit/engine";
+import { parseCte } from "../src/lib/audit/cte-parser";
+import { parseFreightTable } from "../src/lib/audit/table-parser";
+import type { FreightTable } from "../src/lib/audit/types";
+
+const FIX = path.join(import.meta.dirname, "fixtures");
+
+// Map the demo's structured table JSON into our FreightTable (engine-isolated golden test).
+function tableFromDemoJson(): FreightTable {
+  const j = JSON.parse(fs.readFileSync(path.join(FIX, "tabela_frete.json"), "utf8"));
+  return {
+    carrierName: j.transportadora.nome,
+    cubageFactorKgM3: j.fator_cubagem_kg_m3,
+    gris: { pct: j.gris.pct, min: j.gris.min },
+    adval: { pct: j.adval.pct, min: j.adval.min },
+    pedagio: { valuePerFraction: j.pedagio.valor_por_fracao, fractionKg: j.pedagio.fracao_kg },
+    tde: { value: j.tde.valor, cities: j.tde.pracas },
+    reajuste: { pct: j.reajuste.percentual, effectiveDate: j.reajuste.vigencia },
+    expectedComponents: j.taxas_previstas,
+    pracas: Object.entries(j.pracas).map(([name, p]: [string, any]) => ({
+      name,
+      uf: p.uf,
+      rateKg: p.rate_kg,
+      min: p.min,
+    })),
+  };
+}
+
+function loadCtes() {
+  return fs
+    .readdirSync(path.join(FIX, "ctes"))
+    .filter((f) => f.endsWith(".xml"))
+    .sort()
+    .map((f) => ({
+      fileName: f,
+      cte: parseCte(fs.readFileSync(path.join(FIX, "ctes", f), "utf8")),
+    }));
+}
+
+const golden = JSON.parse(fs.readFileSync(path.join(FIX, "achados.json"), "utf8"));
+
+function checkAgainstGolden(result: ReturnType<typeof audit>) {
+  expect(result.skipped).toEqual([]);
+  expect(result.summary.cteCount).toBe(golden.resumo.ctes_auditados); // 200
+  expect(result.summary.totalFreight).toBeCloseTo(golden.resumo.frete_total, 2); // 423483.75
+  expect(result.summary.divergentCount).toBe(golden.resumo.ctes_com_divergencia); // 37
+  expect(result.summary.totalRecoverable).toBeCloseTo(golden.resumo.total_divergencia, 2); // 5177.78
+
+  // Every individual finding must match (nCT, component, type, values).
+  const mine = result.rows
+    .flatMap((r) => r.findings.map((f) => `${r.nCT}|${f.component}|${f.reason}|${f.charged}|${f.expected}|${f.difference}`))
+    .sort();
+  const theirs = golden.achados
+    .map((a: any) => `${a.nCT}|${a.componente}|${a.tipo}|${a.cobrado}|${a.devido}|${a.diferenca}`)
+    .sort();
+  expect(mine).toEqual(theirs);
+}
+
+describe("golden audit of the 200 demo CTes", () => {
+  it("reproduces achados.json using the structured table", () => {
+    checkAgainstGolden(audit(tableFromDemoJson(), loadCtes()));
+  });
+
+  it("reproduces achados.json end-to-end from the PDF table", async () => {
+    const buf = fs.readFileSync(path.join(FIX, "tabela_frete.pdf"));
+    const table = await parseFreightTable(buf, "tabela_frete.pdf");
+    checkAgainstGolden(audit(table, loadCtes()));
+  });
+});
+
+it("rows are sorted by difference descending and unresolved praças are skipped", () => {
+  const table = tableFromDemoJson();
+  const items = loadCtes().slice(0, 20);
+  const bad = structuredClone(items[0]);
+  bad.fileName = "bad.xml";
+  bad.cte.ufFim = "BA";
+  const result = audit(table, [...items, bad]);
+  expect(result.skipped).toEqual([{ fileName: "bad.xml", error: expect.stringContaining("BA") }]);
+  const diffs = result.rows.map((r) => r.difference);
+  expect(diffs).toEqual([...diffs].sort((a, b) => b - a));
+});
