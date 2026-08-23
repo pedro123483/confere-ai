@@ -20,7 +20,7 @@ function tableFromDemoJson(): FreightTable {
     tde: { value: j.tde.valor, cities: j.tde.pracas },
     reajuste: { pct: j.reajuste.percentual, effectiveDate: j.reajuste.vigencia },
     expectedComponents: j.taxas_previstas,
-    pracas: Object.entries(j.pracas).map(([name, p]: [string, any]) => ({
+    pracas: Object.entries(j.pracas as Record<string, { uf: string; rate_kg: number; min: number }>).map(([name, p]) => ({
       name,
       uf: p.uf,
       rateKg: p.rate_kg,
@@ -54,7 +54,8 @@ function checkAgainstGolden(result: ReturnType<typeof audit>) {
     .flatMap((r) => r.findings.map((f) => `${r.nCT}|${f.component}|${f.reason}|${f.charged}|${f.expected}|${f.difference}`))
     .sort();
   const theirs = golden.achados
-    .map((a: any) => `${a.nCT}|${a.componente}|${a.tipo}|${a.cobrado}|${a.devido}|${a.diferenca}`)
+    .map((a: { nCT: string; componente: string; tipo: string; cobrado: number; devido: number; diferenca: number }) =>
+      `${a.nCT}|${a.componente}|${a.tipo}|${a.cobrado}|${a.devido}|${a.diferenca}`)
     .sort();
   expect(mine).toEqual(theirs);
 }
