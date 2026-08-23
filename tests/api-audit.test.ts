@@ -63,3 +63,44 @@ it("bad XML lands in skipped, not a failure", async () => {
   expect(json.summary.cteCount).toBe(1);
   expect(json.skipped).toEqual([{ fileName: "broken.xml", error: expect.stringContaining("CT-e") }]);
 });
+
+it("400 when the table is bigger than 10 MB", async () => {
+  const form = new FormData();
+  form.append("table", new File([new Uint8Array(11 * 1024 * 1024)], "tabela.pdf", { type: "application/pdf" }));
+  form.append("ctes", cteFile("CTe_48240.xml"));
+  const res = await POST(makeRequest(form));
+  expect(res.status).toBe(400);
+  expect((await res.json()).error).toMatch(/10 MB/);
+});
+
+it("XML bigger than 1 MB lands in skipped, not a failure", async () => {
+  const form = new FormData();
+  form.append("table", pdfFile());
+  form.append("ctes", cteFile("CTe_48240.xml"));
+  form.append("ctes", new File([new Uint8Array(2 * 1024 * 1024)], "huge.xml", { type: "text/xml" }));
+  const res = await POST(makeRequest(form));
+  expect(res.status).toBe(200);
+  const json = await res.json();
+  expect(json.summary.cteCount).toBe(1);
+  expect(json.skipped).toContainEqual({ fileName: "huge.xml", error: expect.stringContaining("1 MB") });
+});
+
+it("400 with the ScannedPdfError message when the PDF cannot be read", async () => {
+  const form = new FormData();
+  form.append("table", new File(["%PDF-1.4 garbage"], "scan.pdf", { type: "application/pdf" }));
+  form.append("ctes", cteFile("CTe_48240.xml"));
+  const res = await POST(makeRequest(form));
+  expect(res.status).toBe(400);
+  expect((await res.json()).error).toBe(
+    "Não foi possível ler o PDF automaticamente. Envie a versão em Excel da tabela."
+  );
+});
+
+it("400 when zero valid XMLs remain after parsing", async () => {
+  const form = new FormData();
+  form.append("table", pdfFile());
+  form.append("ctes", new File(["<foo/>"], "broken.xml", { type: "text/xml" }));
+  const res = await POST(makeRequest(form));
+  expect(res.status).toBe(400);
+  expect((await res.json()).error).toMatch(/Nenhum XML/);
+});
