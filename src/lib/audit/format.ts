@@ -14,7 +14,7 @@ export const formatBRL = (x: number) =>
   new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" }).format(x);
 
 export function normalizeCity(s: string): string {
-  return s.normalize("NFD").replace(/[̀-ͯ]/g, "").toUpperCase().trim();
+  return s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toUpperCase().trim();
 }
 
 export function brDateToIso(s: string): string {
