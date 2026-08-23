@@ -8,7 +8,15 @@ const MAX_XML_BYTES = 1 * 1024 * 1024;
 const MAX_XMLS = 50;
 
 export async function POST(request: Request) {
-  const form = await request.formData();
+  let form: FormData;
+  try {
+    form = await request.formData();
+  } catch {
+    return Response.json(
+      { error: "Requisição inválida. Envie os arquivos como multipart/form-data." },
+      { status: 400 }
+    );
+  }
   const tableFile = form.get("table");
   const cteFiles = form.getAll("ctes").filter((f): f is File => f instanceof File);
 

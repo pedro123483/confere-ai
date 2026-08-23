@@ -79,8 +79,10 @@ export function auditCte(cte: ParsedCte, table: FreightTable): Finding[] {
     }
   }
 
-  // TDE — only allowed in the table's listed cities
-  if ("TDE" in cte.comps) {
+  // TDE — only allowed in the table's listed cities. No TDE clause at all in the
+  // table means "TDE" isn't in expectedComponents, so a charged TDE falls through
+  // to the generic TAXA_NAO_PREVISTA below (avoids double-counting).
+  if (table.tde && "TDE" in cte.comps) {
     const allowed = table.tde?.cities.includes(normalizeCity(cte.munFim)) ?? false;
     if (!allowed) {
       add("TDE", cte.comps["TDE"], 0, "TDE_INDEVIDA",

@@ -35,3 +35,8 @@ it("parses CTe_48240.xml completely", () => {
 it("throws on non-CTe XML", () => {
   expect(() => parseCte("<foo><bar/></foo>")).toThrow(/CT-e/);
 });
+
+it("throws on a CTe XML missing vPrest/nCT instead of yielding NaN", () => {
+  const xml = '<CTe xmlns="http://www.portalfiscal.inf.br/cte"><infCte Id="CTe123"><ide><nCT>1</nCT></ide></infCte></CTe>';
+  expect(() => parseCte(xml)).toThrow(/CT-e/);
+});

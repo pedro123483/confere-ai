@@ -139,7 +139,7 @@ There is no demo XLSX; the XLSX path expects the same textual labels as the PDF.
 4. **GRIS** expected = `max(gris.min, vCarga * gris.pct)` → `GRIS_MAJORADO` (motivo cites effective vs contracted %).
 5. **AD VALOREM** expected = `max(adval.min, vCarga * adval.pct)` → `ADVAL_DIVERGENTE`.
 6. **PEDÁGIO** expected = `(floor(taxable / fractionKg) + 1) * valuePerFraction`; diagnose factor-350 (`CUBAGEM_FATOR`) vs tariff (`PEDAGIO_TARIFA`, motivo cites effective tariff).
-7. **TDE** charged outside `tde.cities` → `TDE_INDEVIDA`, expected 0.
+7. **TDE** — checked only when the table has a TDE clause: charged outside `tde.cities` → `TDE_INDEVIDA`, expected 0. When the table has no TDE clause at all, "TDE" is absent from `expectedComponents`, so a charged TDE falls through to step 8 (`TAXA_NAO_PREVISTA`, single finding) instead of double-counting.
 8. Any component not in `expectedComponents` → `TAXA_NAO_PREVISTA`, expected 0.
 
 Only over-charges are findings (charged − expected > 0,05); undercharges are not flagged. Row: `charged = vTPrest`, `difference = Σ finding differences`, `expected = charged − difference`, status DIVERGENTE if any finding. All money rounded to 2 decimals with an epsilon (`r2`). CTes whose praça can't be resolved go to `skipped` with a clear message.

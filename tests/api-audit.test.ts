@@ -96,6 +96,19 @@ it("400 with the ScannedPdfError message when the PDF cannot be read", async () 
   );
 });
 
+it("400 with a clear error when the body isn't multipart/form-data", async () => {
+  const req = new Request("http://test/api/audit", {
+    method: "POST",
+    body: "{}",
+    headers: { "content-type": "application/json" },
+  });
+  const res = await POST(req);
+  expect(res.status).toBe(400);
+  expect((await res.json()).error).toBe(
+    "Requisição inválida. Envie os arquivos como multipart/form-data."
+  );
+});
+
 it("400 when zero valid XMLs remain after parsing", async () => {
   const form = new FormData();
   form.append("table", pdfFile());

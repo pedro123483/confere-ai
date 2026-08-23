@@ -88,11 +88,11 @@ export function Results({
               const divergent = r.status === "DIVERGENTE";
               return (
                 <FragmentRow
-                  key={r.nCT}
+                  key={r.chave}
                   row={r}
                   divergent={divergent}
-                  expanded={expanded.has(r.nCT)}
-                  onToggle={() => toggle(r.nCT)}
+                  expanded={expanded.has(r.chave)}
+                  onToggle={() => toggle(r.chave)}
                   onGenerateEmail={() => onGenerateEmail(r)}
                 />
               );
@@ -156,7 +156,7 @@ function FragmentRow({
       </tr>
       {expanded &&
         row.findings.map((f, i) => (
-          <tr key={`${row.nCT}-${i}`} className="border-b border-[#f0f0ee] bg-[#fffbeb]/50 text-xs text-[#666]">
+          <tr key={`${row.chave}-${i}`} className="border-b border-[#f0f0ee] bg-[#fffbeb]/50 text-xs text-[#666]">
             <td className="px-4 py-2" />
             <td className="px-4 py-2 font-mono">{f.component}</td>
             <td className="px-4 py-2 text-right font-mono">{formatBRL(f.charged)}</td>

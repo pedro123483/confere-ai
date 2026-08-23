@@ -31,13 +31,16 @@ export function parseCte(xml: string): ParsedCte {
     ? (Object.values(inf.imp.ICMS)[0] as Record<string, string> | undefined)
     : undefined;
 
+  const vTPrest = Number(vPrest.vTPrest);
+  if (!Number.isFinite(vTPrest)) throw new Error("XML não é um CT-e válido (vTPrest ausente)");
+
   return {
     nCT: String(ide.nCT),
     chave: String(inf["@_Id"] ?? "").replace(/^CTe/, ""),
     dhEmi: String(ide.dhEmi ?? "").slice(0, 10),
     munFim: ide.xMunFim ?? "",
     ufFim: ide.UFFim ?? "",
-    vTPrest: Number(vPrest.vTPrest),
+    vTPrest,
     vRec: Number(vPrest.vRec),
     vCarga: Number(carga.vCarga ?? 0),
     comps,

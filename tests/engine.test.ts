@@ -1,10 +1,10 @@
 import { it, expect, describe } from "vitest";
 import fs from "node:fs";
 import path from "node:path";
-import { audit } from "../src/lib/audit/engine";
+import { audit, auditCte } from "../src/lib/audit/engine";
 import { parseCte } from "../src/lib/audit/cte-parser";
 import { parseFreightTable } from "../src/lib/audit/table-parser";
-import type { FreightTable } from "../src/lib/audit/types";
+import type { FreightTable, ParsedCte } from "../src/lib/audit/types";
 
 const FIX = path.join(import.meta.dirname, "fixtures");
 
@@ -69,6 +69,68 @@ describe("golden audit of the 200 demo CTes", () => {
     const buf = fs.readFileSync(path.join(FIX, "tabela_frete.pdf"));
     const table = await parseFreightTable(buf, "tabela_frete.pdf");
     checkAgainstGolden(audit(table, loadCtes()));
+  });
+});
+
+// Minimal fixtures for the targeted branch tests below (no golden-data dependency).
+function minimalTable(overrides: Partial<FreightTable> = {}): FreightTable {
+  return {
+    carrierName: "Test Carrier",
+    cubageFactorKgM3: 300,
+    gris: { pct: 0.01, min: 10 },
+    expectedComponents: ["FRETE PESO"],
+    pracas: [{ name: "SP", uf: "SP", rateKg: 1, min: 50 }],
+    ...overrides,
+  };
+}
+
+function minimalCte(overrides: Partial<ParsedCte> = {}): ParsedCte {
+  return {
+    nCT: "1",
+    chave: "chave1",
+    dhEmi: "2026-01-01",
+    munFim: "Sao Paulo",
+    ufFim: "SP",
+    vTPrest: 100,
+    vRec: 100,
+    vCarga: 1000,
+    comps: { "FRETE PESO": 100 },
+    pesoBruto: 100,
+    cubagemM3: 0,
+    emit: { cnpj: "1", nome: "Emit" },
+    dest: { nome: "Dest" },
+    ...overrides,
+  };
+}
+
+it("TDE charged with no TDE clause in the table falls through to a single TAXA_NAO_PREVISTA finding (no double count)", () => {
+  const table = minimalTable(); // no `tde` field at all
+  const cte = minimalCte({ comps: { "FRETE PESO": 100, TDE: 85 }, vTPrest: 185 });
+  const findings = auditCte(cte, table);
+  expect(findings).toHaveLength(1);
+  expect(findings[0]).toMatchObject({ component: "TDE", reason: "TAXA_NAO_PREVISTA" });
+});
+
+it("FRETE PESO divergence matching neither diagnostic hypothesis reports FRETE_PESO_DIVERGENTE", () => {
+  const table = minimalTable(); // no reajuste, cubagemM3 = 0 so cubage-350 hypothesis can't match a real divergence
+  const cte = minimalCte({ comps: { "FRETE PESO": 150 }, vTPrest: 150 });
+  const findings = auditCte(cte, table);
+  expect(findings).toHaveLength(1);
+  expect(findings[0]).toMatchObject({
+    component: "FRETE PESO", reason: "FRETE_PESO_DIVERGENTE", charged: 150, expected: 100,
+  });
+});
+
+it("AD VALOREM above max(min, vCarga*pct) reports ADVAL_DIVERGENTE", () => {
+  const table = minimalTable({
+    adval: { pct: 0.02, min: 5 },
+    expectedComponents: ["FRETE PESO", "AD VALOREM"],
+  });
+  const cte = minimalCte({ comps: { "FRETE PESO": 100, "AD VALOREM": 21 }, vTPrest: 121, vCarga: 1000 });
+  const findings = auditCte(cte, table);
+  expect(findings).toHaveLength(1);
+  expect(findings[0]).toMatchObject({
+    component: "AD VALOREM", reason: "ADVAL_DIVERGENTE", charged: 21, expected: 20,
   });
 });
 
